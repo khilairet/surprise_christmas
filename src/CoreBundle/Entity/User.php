@@ -1,0 +1,231 @@
+<?php
+
+namespace CoreBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="CoreBundle\Repository\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
+     */
+    protected $lastname;
+
+    /**
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true)
+     */
+    protected $facebook_id;
+
+    /**
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
+     */
+    protected $facebook_access_token;
+
+    /**
+     * @ORM\Column(name="facebook_picture", type="string", length=255, nullable=true)
+     */
+    protected $facebook_picture;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="gift_to")
+     * @ORM\JoinColumn(name="santa_id", referencedColumnName="id")
+     */
+    private $santa;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User", mappedBy="santa")
+     */
+    private $gift_to;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param string $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebook_id = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebook_id;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebook_access_token = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return User
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return User
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set facebookPicture
+     *
+     * @param string $facebookPicture
+     *
+     * @return User
+     */
+    public function setFacebookPicture($facebookPicture)
+    {
+        $this->facebook_picture = $facebookPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPicture
+     *
+     * @return string
+     */
+    public function getFacebookPicture()
+    {
+        return $this->facebook_picture;
+    }
+
+    /**
+     * Set santa
+     *
+     * @param \CoreBundle\Entity\User $santa
+     *
+     * @return User
+     */
+    public function setSanta(\CoreBundle\Entity\User $santa = null)
+    {
+        $this->santa = $santa;
+
+        return $this;
+    }
+
+    /**
+     * Get santa
+     *
+     * @return \CoreBundle\Entity\User
+     */
+    public function getSanta()
+    {
+        return $this->santa;
+    }
+
+    /**
+     * Set giftTo
+     *
+     * @param \CoreBundle\Entity\User $giftTo
+     *
+     * @return User
+     */
+    public function setGiftTo(\CoreBundle\Entity\User $giftTo = null)
+    {
+        $this->gift_to = $giftTo;
+
+        return $this;
+    }
+
+    /**
+     * Get giftTo
+     *
+     * @return \CoreBundle\Entity\User
+     */
+    public function getGiftTo()
+    {
+        return $this->gift_to;
+    }
+}

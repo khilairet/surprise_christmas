@@ -1,0 +1,7 @@
+core_homepage:
+    path:     /
+    defaults: { _controller: CoreBundle:Homepage:index }
+
+core_santa:
+    path:     /gift-to
+    defaults: { _controller: CoreBundle:Homepage:giftTo }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Surprise Christmas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font.css') }}" rel="stylesheet">
+    <link rel="image_src" href="{{ asset('thumbnail.png') }}"/>
+    <link rel="icon" type="image/ico" href="{{ asset('favicon.ico') }}">
+</head>
+<body>
+{% block body %}{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('js/snowstorm.js') }}"></script>
+<script type="text/javascript">$("[rel=next]").tooltip();</script>
+<script type="text/javascript">
+    var ausDay = new Date('2016-12-25');
+    $('#countdown').countdown(ausDay, function (event) {
+        $(this).html(event.strftime('<span class="countdown_row countdown_show4">' +
+                '<span class="countdown_section"><span class="countdown_amount">%D</span><br>Jours</span>' +
+                '<span class="countdown_section"><span class="countdown_amount">%H</span><br>Heures</span>' +
+                '<span class="countdown_section"><span class="countdown_amount">%M</span><br>Minutes</span>' +
+                '<span class="countdown_section"><span class="countdown_amount">%S</span><br>Secondes</span>' +
+                '</span>'
+        ));
+    });
+</script>
+
+{% block js %}{% endblock %}
+</body>
+</html>
